@@ -1,0 +1,53 @@
+<h3>BatchStudentList <a routerLink="../studentreg" class="btn btn-danger">Add student</a></h3> 
+<hr>
+<form [formGroup]="mbform" (ngSubmit)="submitstd()">
+    <br>
+    <h3>Club Students</h3>
+    <div class="form-row">
+        
+        <div class="form-group col-md-4">
+            <label for="inputPassword4">Student Name</label>
+            <select class="custom-select mr-sm-2" formControlName="sid">
+                <option selected value="" disabled>Select-Student</option>
+                <option *ngFor="let s of addstudent" value="{{s.sid}}">
+                   <span *ngIf="s.regi_date==''?'badge badge-success':'badge badge-danger'">{{s.fn}}&nbsp;{{s.mn}}&nbsp;{{s.ln}}</span> 
+                </option>
+            </select>
+        </div>
+      
+    </div>
+
+    <button type="submit" class="btn btn-primary">Save & Add</button>
+</form>
+<table datatable class="row-border hover">
+    <thead>
+        <tr>
+
+            <th>Student name</th>
+            <th>StudentCode</th>
+            <th>Mobile</th>
+            <th>Email</th>
+            <th>Type</th>
+            <th>Added @</th>
+           
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let s of getstudent">
+            <td>{{s.fn}}&nbsp;{{s.mn}}&nbsp;{{s.ln}}</td>
+            <td>{{s.scode}}</td>
+            <td>{{s.mobile}}</td>
+            <td>{{s.email}}</td>
+            <td>{{s.studenttype}}</td>
+            <td>{{s.add_date | date:'shortDate'}}</td>
+            
+        </tr>
+
+    </tbody>
+</table>
+
+<table>
+    <tr>
+        <td>{{countall.sc}}</td>
+    </tr>
+</table>
